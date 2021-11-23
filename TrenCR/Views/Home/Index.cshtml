@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Pagina Principal";
+}
+
+ 
+<div class="jumbotron row card border">
+    <div class="col">
+        <h4 class="text-center">
+            <strong>Estacion de Servicios Tren-CR</strong>  
+        </h4>
+    </div>
+</div>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h4 class="card-title">San Jose - Cartago</h4>
+                    <p class="card-text">Lista de Horarios</p>
+                    <div class="text-center">
+                        <a asp-action="Index" asp-controller="SC" class="btn btn-primary mb-4"><i class="fa fa-plus">Consultar</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h4 class="card-title">Cartago - San Jose</h4>
+                    <p class="card-text">Lista de Horarios</p>
+                    <div class="text-center">
+                        <a asp-action="Index" asp-controller="CS" class="btn btn-primary mb-4"><i class="fa fa-plus">Consultar</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

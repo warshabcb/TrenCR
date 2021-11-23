@@ -1,0 +1,146 @@
+﻿@model IEnumerable<TrenCR.Model.Cartago_SanJose>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row card border">
+    <div class="col">
+        <h4 class="text-center">
+            <strong>Lista de Horarios Cartago -- San Jose  </strong>
+        </h4>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-6 ">
+        <div class="float-left">
+            <h5 id="Fecha">@{DateTime.Today.ToString("dd/MM/yyyy");}</h5>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="float-right">
+            <h5 id="Hora">@{DateTime.Now.ToString("HH:mm:ss");}</h5>
+        </div>
+    </div>
+</div>
+<br />
+<div class="container">
+
+    <div class="row  justify-content-around">
+        <div class="col table-responsive">
+            <table class="table table-bordered table-sm">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="col">Codigo</th>
+                        <th class="text-center" scope="col">Estacion Atlantico</th>
+                        <th class="text-center" scope="col">UCR</th>
+                        <th class="text-center" scope="col">U-Latina</th>
+                        <th class="text-center" scope="col">C-FIA</th>
+                        <th class="text-center" scope="col">UACA</th>
+                        <th class="text-center" scope="col">TRES RIOS</th>
+                        <th class="text-center" scope="col">Estacion Cartago</th>
+                        <th class="text-center" scope="col">Los Angeles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center"> @Html.DisplayFor(m => item.Id)</td>
+                            <td class="text-center"> @Html.DisplayFor(m => item.EstacionAtlantico)</td>
+                            <td class="text-center"> @Html.DisplayFor(m => item.UCR)</td>
+                            <td class="text-center"> @Html.DisplayFor(m => item.Ulatina)</td>
+                            <td class="text-center"> @Html.DisplayFor(m => item.Cfia)</td>
+                            <td class="text-center"> @Html.DisplayFor(m => item.UACA)</td>
+                            <td class="text-center"> @Html.DisplayFor(m => item.TresRios)</td>
+                            <td class="text-center"> @Html.DisplayFor(m => item.EstacionCartago)</td>
+                            <td class="text-center"> @Html.DisplayFor(m => item.LosAngeles)</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row card border">
+            <div class="col">
+                <h4 class="text-center">
+                    <strong>Comprar Boleto de Viaje</strong>
+                </h4>
+            </div>
+        </div>
+        <br />
+        <div class="row align-items-center text-center border p-2">
+            <div class="col-2">
+                <label for="code" class="">Horario:</label>
+                <select id="code" class="form-select" aria-label="Seleccione ID Lista Horario">
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item.Id">@item.Id</option>
+                    }
+                </select>
+            </div>
+            <div class="col-3">
+                <label for="FechaSelect" class="">Fecha Boleto:</label>
+                <select id="FechaSelect" class="form-select" aria-label="Seleccione Fecha">
+                    @{
+                        DateTime Fecha = DateTime.Now;
+                        var Hora = Fecha.Hour;
+                        @if (Hora < 16 || Hora < 17 || Hora < 18)
+                        {
+                            <option value="@Fecha.ToString("dd/MM/yyyy")">@Fecha.ToString("dd/MM/yyyy")</option>
+                        };
+        <option value="@Fecha.AddDays(1).ToString("dd/MM/yyyy")">@Fecha.AddDays(1).ToString("dd/MM/yyyy")</option>
+        <option value="@Fecha.AddDays(2).ToString("dd/MM/yyyy")">@Fecha.AddDays(2).ToString("dd/MM/yyyy")</option>
+                    };
+                </select>
+
+            </div>
+            <div class="col-3">
+                <label for="CantidadSelect" class="">Cantidad Boletos:</label>
+                <select id="CantidadSelect" class="form-select" aria-label="Seleccione Cantidad">
+                    @for (var i = 1; i < 20; i++)
+                    {
+                        <option value="@i">@i</option>
+                    };
+                </select>
+            </div>
+            <div class="col-4">
+                <label for="correo" class="">Email:</label>
+                <input type="email" name="correo" id="Email" value="" required />
+            </div>
+            <div class="col-12 text-center">
+                <button class="btn btn-primary  btn-sm" id="AgregarBoletocs" type="submit">Agregar Boletos</button>
+            </div>
+        </div>
+        <br />
+        <div class="row  justify-content-around">
+            <div class="col table-responsive">
+                <table class="table table-bordered table-sm" id="bolascs">
+                    <thead>
+                        <tr>
+                            <th class="text-center" scope="col">Codigo Horario</th>
+                            <th class="text-center" scope="col">Fecha</th>
+                            <th class="text-center" scope="col">Cantidad</th>
+                            <th class="text-center" scope="col">Usuario</th>
+                            <th class="text-center" scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-12 text-center">
+                <button class="btn btn-primary  btn-sm" id="Procesarcs" type="submit">Procesar Boletos</button>
+            </div>
+        </div>
+
+    </div>
+</div>
